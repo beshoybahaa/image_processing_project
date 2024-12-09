@@ -36,18 +36,18 @@ def normalize_image(image_array):
     """
     return (255 * (image_array - np.min(image_array)) / (np.ptp(image_array))).astype(np.uint8)
 
-# Load the image and convert to grayscale
-image = Image.open("./Grayscale_MainAfter.jpg").convert("L")
-image_array = np.array(image)
+def variance(image_path):
+    # Load the image and convert to grayscale
+    image = Image.open(image_path).convert("L")
+    image_array = np.array(image)
 
-# Apply variance-based edge detection
-kernel_size = 3  # Define kernel size
-variance_edges = calculate_local_variance(image_array, kernel_size)
+    # Apply variance-based edge detection
+    kernel_size = 3  # Define kernel size
+    variance_edges = calculate_local_variance(image_array, kernel_size)
 
-# Normalize the result for visualization
-normalized_edges = normalize_image(variance_edges)
+    # Normalize the result for visualization
+    normalized_edges = normalize_image(variance_edges)
 
-# Save or display the result
-output_image = Image.fromarray(normalized_edges)
-output_image.save("variance_edge_detection.jpg")
-output_image.show()
+    # Save or display the result
+    output_image = Image.fromarray(normalized_edges)
+    return output_image

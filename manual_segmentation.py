@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-def histogram_based_manual_segmentation(image_path, threshold):
+def manual_segmentation(image_path, threshold):
     # Load the grayscale image
     image = Image.open(image_path).convert('L')
     image_array = np.array(image)
@@ -41,9 +41,3 @@ def histogram_based_manual_segmentation(image_path, threshold):
     plt.show()
 
     return segmented_image
-
-image_path = "./Grayscale_MainAfter.jpg"  # Replace with your image path
-threshold_value = 128  # Adjust the threshold value manually
-segmented_image = histogram_based_manual_segmentation(image_path, threshold_value)
-
-Image.fromarray(segmented_image).save("segmented_image_manual.jpg")

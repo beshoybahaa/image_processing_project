@@ -2,7 +2,7 @@ import numpy as np
 from PIL import Image
 import matplotlib.pyplot as plt
 
-def compute_histogram_with_alert(image_path):
+def histogram(image_path):
     # Load the image and convert it to grayscale
     image = Image.open(image_path).convert('L')
     image_array = np.array(image)
@@ -38,7 +38,3 @@ def compute_histogram_with_alert(image_path):
 
     print(alert)
     return histogram, alert
-
-
-image_path = "./Grayscale_MainAfter.jpg"  # Replace with your image file
-histogram, alert = compute_histogram_with_alert(image_path)

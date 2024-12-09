@@ -38,24 +38,8 @@ def error_diffusion_halftone(image_path):
                 if 0 <= nx < width and 0 <= ny < height:
                     image_array[ny, nx] += error * factor
 
-    # Display results
-    plt.figure(figsize=(12, 6))
-    plt.subplot(1, 2, 1)
-    plt.title("Original Grayscale Image")
-    plt.imshow(image, cmap='gray')
-    plt.axis('off')
 
-    plt.subplot(1, 2, 2)
-    plt.title("Halftone Image (Error Diffusion)")
-    plt.imshow(halftone_image, cmap='gray')
-    plt.axis('off')
-
-    plt.tight_layout()
-    plt.show()
 
     # Save the halftone image
     halftone_image_pil = Image.fromarray(halftone_image)
-    halftone_image_pil.save("halftone_image_error_diffusion.jpg")
-
-image_path = "./Grayscale_MainAfter.jpg"  # Replace with your image path
-error_diffusion_halftone(image_path)
+    return halftone_image_pil

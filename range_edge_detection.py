@@ -2,13 +2,14 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-def range_edge_detection(image, kernel_size):
+def range_edge_detection(image_path, kernel_size=5):
     """
     Apply range-based edge detection to an image.
     :param image: Input grayscale image (2D numpy array).
     :param kernel_size: Size of the local neighborhood (odd number).
     :return: Edge-detected image.
     """
+    image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
     # Calculate padding size
     pad_size = kernel_size // 2
     
@@ -30,26 +31,3 @@ def range_edge_detection(image, kernel_size):
     # Normalize the result to range [0, 255]
     edge_image = cv2.normalize(edge_image, None, 0, 255, cv2.NORM_MINMAX)
     return edge_image.astype(np.uint8)
-
-# Load a sample image
-image_path = './Grayscale_MainAfter.jpg'  # Replace with your image path
-image = cv2.imread(image_path, cv2.IMREAD_GRAYSCALE)
-
-# Apply range-based edge detection
-kernel_size = 5  # Neighborhood size
-edges = range_edge_detection(image, kernel_size)
-
-# Plot the original and edge-detected images
-plt.figure(figsize=(12, 6))
-plt.subplot(1, 2, 1)
-plt.title("Original Image")
-plt.imshow(image, cmap='gray')
-plt.axis('off')
-
-plt.subplot(1, 2, 2)
-plt.title("Edge-Detected Image (Range)")
-plt.imshow(edges, cmap='gray')
-plt.axis('off')
-
-plt.tight_layout()
-plt.show()

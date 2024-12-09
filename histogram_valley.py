@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-def histogram_valley_segmentation(image_path):
+def histogram_valley(image_path):
     # Load the grayscale image
     image = Image.open(image_path).convert('L')  # Convert to grayscale
     image_array = np.array(image)
@@ -29,26 +29,4 @@ def histogram_valley_segmentation(image_path):
         else:
             segmented_image[(image_array > thresholds[i - 1]) & (image_array <= threshold)] = (i + 1) * (255 // (len(thresholds) + 1))
     segmented_image[image_array > thresholds[-1]] = 255  # Assign the brightest region
-
-    # Visualize results
-    plt.figure(figsize=(10, 8))
-    plt.subplot(2, 2, 1)
-    plt.title("Original Image")
-    plt.imshow(image_array, cmap='gray')
-    plt.axis('off')
-
-    plt.subplot(2, 2, 2)
-    plt.title("Histogram")
-    plt.plot(histogram, color='black')
-    for valley in valleys:
-        plt.axvline(x=valley, color='blue', linestyle='--')
-
-    plt.subplot(2, 2, 3)
-    plt.title("Segmented Image")
-    plt.imshow(segmented_image, cmap='gray')
-    plt.axis('off')
-
-    plt.show()
-
-image_path = "./Grayscale_MainAfter.jpg"  # Replace with your image file path
-histogram_valley_segmentation(image_path)
+    return segmented_image
