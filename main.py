@@ -3,8 +3,30 @@ from tkinter import ttk, filedialog
 from PIL import Image, ImageTk
 import cv2
 
-from add_images import add_image_and_copy
 from inverse import inverse
+from add_images import add_image
+from subtract_images import subtract_images
+from convert_image_to_grayscale import convert_image_to_grayscale
+from threshold import threshold
+from halftoning_threshold import halftoning_thredshold
+from histogram import histogram
+from histogram_equalization import histogram_equalization
+from manual_segmentation import manual_segmentation
+from histogram_peak import histogram_peak
+from histogram_valley import histogram_valley
+from adaptive_histogram import adaptive_histogram
+from high_filter import high_filter
+from low_filter import low_filter
+from median_filter import median_filter
+from kernel import kernel
+# from prewitt import prewitt
+from kirsch_kernels import kirsch_kernels
+from homogeneity_operator import homogeneity_operator
+from difference_operator import difference_operator
+from difference_of_gaussians import difference_of_gaussians
+from variance import variance
+from range_edge_detection import range_edge_detection
+
 
 def load_image(image_path, size):
     try:
@@ -48,10 +70,6 @@ root.resizable(False, False)  # Disable resizing
 # Frame for buttons
 button_frame = ttk.Frame(root)
 button_frame.pack(side=tk.LEFT, padx=10, pady=10, fill=tk.Y)
-
-# Function for button clicks
-def on_button_click(btn_number):
-    print(f"Button {btn_number} clicked!")
     
 def update_result_image(function):
     result_image = function(image_path)
@@ -70,29 +88,28 @@ def update_result_image(function):
 # List of functions for buttons
 functions = [
     {"title": "Image Operations", "name": "Invert Image", "function": lambda: update_result_image(inverse)},
-    {"title": "Image Operations", "name": "Add Image", "function": lambda: update_result_image(add_image_and_copy)},
-    {"title": "Image Operations", "name": "Subtract Image", "function": lambda: on_button_click(3)},
-    {"title": "Basic Operations", "name": "Grayscale", "function": lambda: on_button_click(4)},
-    {"title": "Basic Operations", "name": "Threshold", "function": lambda: on_button_click(5)},
-    {"title": "Basic Operations", "name": "Halftone", "function": lambda: on_button_click(6)},
-    {"title": "Histogram", "name": "Apply Histogram", "function": lambda: on_button_click(7)},
-    {"title": "Histogram", "name": "Histogram Equalization", "function": lambda: on_button_click(8)},
-    {"title": "Histogram", "name": "Manual Segmentation", "function": lambda: on_button_click(9)},
-    {"title": "Histogram", "name": "Histogram Peak", "function": lambda: on_button_click(10)},
-    {"title": "Histogram", "name": "Histogram Valley", "function": lambda: on_button_click(11)},
-    {"title": "Histogram", "name": "Adaptive Histogram", "function": lambda: on_button_click(12)},
-    {"title": "Filters", "name": "High-Pass", "function": lambda: on_button_click(13)},
-    {"title": "Filters", "name": "Low-Pass", "function": lambda: on_button_click(14)},
-    {"title": "Filters", "name": "Median", "function": lambda: on_button_click(15)},
-    {"title": "Edge Detection", "name": "Sobel", "function": lambda: on_button_click(16)},
-    {"title": "Edge Detection", "name": "Prewitt", "function": lambda: on_button_click(17)},
-    {"title": "Edge Detection", "name": "Kirsch", "function": lambda: on_button_click(18)},
-    {"title": "Advanced Edge Detection", "name": "Homogeneity", "function": lambda: on_button_click(19)},
-    {"title": "Advanced Edge Detection", "name": "Difference op", "function": lambda: on_button_click(20)},
-    {"title": "Advanced Edge Detection", "name": "Difference of Gaussian", "function": lambda: on_button_click(21)},
-    {"title": "Advanced Edge Detection", "name": "AST based", "function": lambda: on_button_click(22)},
-    {"title": "Advanced Edge Detection", "name": "Variance", "function": lambda: on_button_click(23)},
-    {"title": "Advanced Edge Detection", "name": "Range op", "function": lambda: on_button_click(24)},
+    {"title": "Image Operations", "name": "Add Image", "function": lambda: update_result_image(add_image)},
+    {"title": "Image Operations", "name": "Subtract Image", "function": lambda: update_result_image(subtract_images)},
+    {"title": "Basic Operations", "name": "Grayscale", "function": lambda: update_result_image(convert_image_to_grayscale)},
+    {"title": "Basic Operations", "name": "Threshold", "function": lambda: update_result_image(threshold)},
+    {"title": "Basic Operations", "name": "Halftone", "function": lambda: update_result_image(halftoning_thredshold)},
+    {"title": "Histogram", "name": "Apply Histogram", "function": lambda: update_result_image(histogram)},
+    {"title": "Histogram", "name": "Histogram Equalization", "function": lambda: update_result_image(histogram_equalization)},
+    {"title": "Histogram", "name": "Manual Segmentation", "function": lambda: update_result_image(manual_segmentation)},
+    {"title": "Histogram", "name": "Histogram Peak", "function": lambda: update_result_image(histogram_peak)},
+    {"title": "Histogram", "name": "Histogram Valley", "function": lambda: update_result_image(histogram_valley)},
+    {"title": "Histogram", "name": "Adaptive Histogram", "function": lambda: update_result_image(adaptive_histogram)},
+    {"title": "Filters", "name": "High-Pass", "function": lambda: update_result_image(high_filter)},
+    {"title": "Filters", "name": "Low-Pass", "function": lambda: update_result_image(low_filter)},
+    {"title": "Filters", "name": "Median", "function": lambda: update_result_image(median_filter)},
+    {"title": "Edge Detection", "name": "Sobel", "function": lambda: update_result_image(kernel)},
+    # {"title": "Edge Detection", "name": "Prewitt", "function": lambda: update_result_image(prewitt)},
+    {"title": "Edge Detection", "name": "Kirsch", "function": lambda: update_result_image(kirsch_kernels)},
+    {"title": "Advanced Edge Detection", "name": "Homogeneity", "function": lambda: update_result_image(homogeneity_operator)},
+    {"title": "Advanced Edge Detection", "name": "Difference op", "function": lambda: update_result_image(difference_operator)},
+    {"title": "Advanced Edge Detection", "name": "Difference of Gaussian", "function": lambda: update_result_image(difference_of_gaussians)},
+    {"title": "Advanced Edge Detection", "name": "Variance", "function": lambda: update_result_image(variance)},
+    {"title": "Advanced Edge Detection", "name": "Range op", "function": lambda: update_result_image(range_edge_detection)},
 ]
 
 # Group buttons by title

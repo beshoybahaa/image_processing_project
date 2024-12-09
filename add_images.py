@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-def add_image_and_copy(image_path):
+def add_image(image_path):
     print(image_path)
     # Load the original image
     original_image = cv2.imread(image_path, cv2.IMREAD_COLOR)

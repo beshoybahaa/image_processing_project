@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-def kirsch_kernel(image_path):
+def kirsch_kernels(image_path):
     def matrixmultiply(matrix1, matrix2):
         # Resultant matrix initialized to 0
         result = [[0 for matrix1 in range(3)] for matrix1 in range(3)]

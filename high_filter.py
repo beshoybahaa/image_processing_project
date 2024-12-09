@@ -1,6 +1,6 @@
 import cv2 as cv
 import numpy as np
-def hugh_filter(image_path):
+def high_filter(image_path):
     img = cv.imread(image_path,cv.IMREAD_UNCHANGED)
     Row = img.shape[0]
     Col = img.shape[1]
