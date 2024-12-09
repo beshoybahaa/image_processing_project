@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import cv2
 
 from add_images import add_image_and_copy
+from inverse import inverse
 
 def load_image(image_path, size):
     try:
@@ -68,7 +69,7 @@ def update_result_image(function):
 
 # List of functions for buttons
 functions = [
-    {"title": "Image Operations", "name": "Invert Image", "function": lambda: on_button_click(1)},
+    {"title": "Image Operations", "name": "Invert Image", "function": lambda: update_result_image(inverse)},
     {"title": "Image Operations", "name": "Add Image", "function": lambda: update_result_image(add_image_and_copy)},
     {"title": "Image Operations", "name": "Subtract Image", "function": lambda: on_button_click(3)},
     {"title": "Basic Operations", "name": "Grayscale", "function": lambda: on_button_click(4)},
