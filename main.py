@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, filedialog
 from PIL import Image, ImageTk
+import cv2
 
 from add_images import add_image_and_copy
 
@@ -15,6 +16,7 @@ def load_image(image_path, size):
 
 image_path = None
 def load_image_button_click():
+    global image_path
     # Ask the user to select an image file
     image_path = filedialog.askopenfilename(title="Select an Image")
     if image_path:
@@ -49,11 +51,25 @@ button_frame.pack(side=tk.LEFT, padx=10, pady=10, fill=tk.Y)
 # Function for button clicks
 def on_button_click(btn_number):
     print(f"Button {btn_number} clicked!")
+    
+def update_result_image(function):
+    result_image = function(image_path)
+    if result_image is not None:
+        # Resize the result image to 400x225
+        result_image_resized = cv2.resize(result_image, (400, 225))
+        # Convert and load the resized image for tkinter
+        result_image_rgb = cv2.cvtColor(result_image_resized, cv2.COLOR_BGR2RGB)
+        result_image_pil = Image.fromarray(result_image_rgb)
+        result_image_tk = ImageTk.PhotoImage(result_image_pil)
+        # Update the label with the resized result image
+        label_result_image.config(image=result_image_tk)
+        label_result_image.image = result_image_tk
+
 
 # List of functions for buttons
 functions = [
     {"title": "Image Operations", "name": "Invert Image", "function": lambda: on_button_click(1)},
-    {"title": "Image Operations", "name": "Add Image", "function": lambda: add_image_and_copy(image_path)},
+    {"title": "Image Operations", "name": "Add Image", "function": lambda: update_result_image(add_image_and_copy)},
     {"title": "Image Operations", "name": "Subtract Image", "function": lambda: on_button_click(3)},
     {"title": "Basic Operations", "name": "Grayscale", "function": lambda: on_button_click(4)},
     {"title": "Basic Operations", "name": "Threshold", "function": lambda: on_button_click(5)},
