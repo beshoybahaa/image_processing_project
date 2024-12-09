@@ -65,16 +65,14 @@ def adaptive_histogram(image_path):
 
 
     # Main script to read images and apply histogram equalization
-    if __name__ == "__main__":
-        img_list = image_path
+    
 
-        for img_path in img_list:
-            # Read the image
-            img = cv2.imread(img_path)
-
-            # Apply adaptive histogram equalization with block size
-            block_size = (100, 100)
-            ahe_img = block_process(img, block_size)
+    # Read the image
+    img = cv2.imread(image_path,cv2.IMREAD_UNCHANGED)
+    print(img)
+    # Apply adaptive histogram equalization with block size
+    block_size = (100, 100)
+    ahe_img = block_process(img, block_size)
     return ahe_img
         # Display the results
         # cv2.imshow("Original Image", img)

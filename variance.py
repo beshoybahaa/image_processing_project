@@ -49,5 +49,5 @@ def variance(image_path):
     normalized_edges = normalize_image(variance_edges)
 
     # Save or display the result
-    output_image = Image.fromarray(normalized_edges)
-    return output_image
+    u8 = normalized_edges.astype(np.uint8)
+    return u8

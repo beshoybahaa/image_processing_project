@@ -83,4 +83,5 @@ def kirsch_kernels(image_path):
             kernel_indices = kernal
 
     cv.imwrite("kernal.jpg", edges)
-    return edges
+    u8 = edges.astype(np.uint8)
+    return u8

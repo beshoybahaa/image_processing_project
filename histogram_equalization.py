@@ -3,7 +3,7 @@ import numpy as np
 
 def histogram_equalization(image_path):
 
-    img = cv.imread(image_path,cv.IMREAD_UNCHANGED)
+    img = cv.imread(image_path,cv.IMREAD_GRAYSCALE)
     Row = img.shape[0]
     Col = img.shape[1]
     # Step 1: Calculate histogram

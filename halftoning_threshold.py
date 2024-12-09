@@ -2,7 +2,7 @@ import cv2 as cv
 path = "Grayscale_MainAfter.jpg"
 def halftoning_thredshold(image_path):
     Threshold = 114.62288953993055
-    img = cv.imread(image_path,cv.IMREAD_UNCHANGED)
+    img = cv.imread(image_path,cv.IMREAD_GRAYSCALE)
     for indexI , i in enumerate(img):
         for indexJ , j in enumerate(i):
             if img[indexI,indexJ] >= Threshold:

@@ -5,7 +5,7 @@ from matplotlib import pyplot as plt
 
 def difference_operator(image_path, threshold=30):
     # Get the dimensions of the image
-    image = cv2.imread(image_path,cv2.IMREAD_UNCHANGED)
+    image = cv2.imread(image_path,cv2.IMREAD_GRAYSCALE)
     print(image.shape)
     rows, cols = image.shape
 

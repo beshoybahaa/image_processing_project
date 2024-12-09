@@ -77,8 +77,8 @@ def update_result_image(function):
         # Resize the result image to 400x225
         result_image_resized = cv2.resize(result_image, (400, 225))
         # Convert and load the resized image for tkinter
-        result_image_rgb = cv2.cvtColor(result_image_resized, cv2.COLOR_BGR2RGB)
-        result_image_pil = Image.fromarray(result_image_rgb)
+        # result_image_rgb = cv2.cvtColor(result_image_resized, cv2.COLOR_BGR2RGB)
+        result_image_pil = Image.fromarray(result_image_resized)
         result_image_tk = ImageTk.PhotoImage(result_image_pil)
         # Update the label with the resized result image
         label_result_image.config(image=result_image_tk)

@@ -58,5 +58,6 @@ def difference_of_gaussians(image_path):
     normalized_dog = normalize_image(dog_result)
 
     # Save or display the result
-    output_image = Image.fromarray(normalized_dog)
-    return output_image
+    # output_image = Image.fromarray(normalized_dog)
+    u8 = normalized_dog.astype(np.uint8)
+    return u8
